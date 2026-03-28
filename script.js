@@ -1,10 +1,9 @@
-//your JS code here. If required.
 document.addEventListener("DOMContentLoaded", () => {
 
   let player1 = "";
   let player2 = "";
   let currentPlayer = "";
-  let currentSymbol = "X";
+  let currentSymbol = "x"; // FIXED (lowercase)
   let gameActive = true;
 
   const submitBtn = document.getElementById("submit");
@@ -21,9 +20,10 @@ document.addEventListener("DOMContentLoaded", () => {
     [0,4,8], [2,4,6]
   ];
 
+  // Start Game
   submitBtn.addEventListener("click", () => {
-    player1 = document.getElementById("player-1").value;
-    player2 = document.getElementById("player-2").value;
+    player1 = document.getElementById("player1").value;
+    player2 = document.getElementById("player2").value;
 
     if (player1 === "" || player2 === "") {
       alert("Enter both names");
@@ -34,9 +34,12 @@ document.addEventListener("DOMContentLoaded", () => {
     gameDiv.style.display = "block";
 
     currentPlayer = player1;
+    currentSymbol = "x";
+
     message.textContent = `${currentPlayer}, you're up`;
   });
 
+  // Cell Click
   cells.forEach((cell, index) => {
     cell.addEventListener("click", () => handleClick(cell, index));
   });
@@ -56,10 +59,10 @@ document.addEventListener("DOMContentLoaded", () => {
     // Switch player
     if (currentPlayer === player1) {
       currentPlayer = player2;
-      currentSymbol = "O";
+      currentSymbol = "o";
     } else {
       currentPlayer = player1;
-      currentSymbol = "X";
+      currentSymbol = "x";
     }
 
     message.textContent = `${currentPlayer}, you're up`;
